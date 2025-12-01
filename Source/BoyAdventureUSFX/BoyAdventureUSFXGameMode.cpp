@@ -8,6 +8,8 @@
 #include "TrampaSierra.h"
 #include "CreadorEnemigosTerrestres.h"
 #include "CreadorEnemigosAereos.h"
+#include "CreadorEnemigosAcuaticos.h"
+#include "CreadorEnemigosAnfivios.h"
 #include "Plataforma.h"
 #include "DirectorPlataforma.h"
 #include "ConstructorPlataformaMadera.h"
@@ -16,7 +18,6 @@
 #include "ConstructorPlataformaTrampa.h"
 #include "Puerta.h"
 #include "ZonaProxy.h"
-
 
 ABoyAdventureUSFXGameMode::ABoyAdventureUSFXGameMode()
 {
@@ -32,6 +33,8 @@ ABoyAdventureUSFXGameMode::ABoyAdventureUSFXGameMode()
     ParedMetal01 = nullptr;
     ts01 = nullptr;
     ts02 = nullptr;
+    Zona1 = nullptr;
+    Zona2 = nullptr;
 }
 
 void ABoyAdventureUSFXGameMode::BeginPlay()
@@ -104,6 +107,29 @@ void ABoyAdventureUSFXGameMode::BeginPlay()
                 UE_LOG(LogTemp, Warning, TEXT("Enemigo aéreo creado exitosamente"));
             }
         }
+
+        // Crear enemigos acuáticos
+        FVector UbicacionAcuatica(-500.0f, -200.0f, 300.0f);
+        FRotator RotacionAcuatica(0.0f, 0.0f, 0.0f);
+        FTransform TransformAcuatica(RotacionAcuatica, UbicacionAcuatica);
+
+        ACreadorEnemigosAcuaticos* CreadorAcuatico = Mundo->SpawnActor<ACreadorEnemigosAcuaticos>(ACreadorEnemigosAcuaticos::StaticClass(), TransformAcuatica);
+        if (CreadorAcuatico)
+        {
+            CreadorAcuatico->CrearEnemigo();
+        }
+
+        // Crear enemigos anfibios
+        FVector UbicacionAnfibia(-700.0f, -1100.0f, 400.0f);
+        FRotator RotacionAnfibia(0.0f, 0.0f, 0.0f);
+        FTransform TransformAnfibio(RotacionAnfibia, UbicacionAnfibia);
+
+        ACreadorEnemigosAnfivios* CreadorAnfibio = Mundo->SpawnActor<ACreadorEnemigosAnfivios>(ACreadorEnemigosAnfivios::StaticClass(), TransformAnfibio);
+        if (CreadorAnfibio)
+        {
+            CreadorAnfibio->CrearEnemigo();
+        }
+
         // Crear el Director
         ADirectorPlataforma* Director = Mundo->SpawnActor<ADirectorPlataforma>();
 

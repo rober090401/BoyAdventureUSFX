@@ -19,7 +19,7 @@ AZonaProxy::AZonaProxy()
 	// Componente de colisión: Caja (Box)
 	ZonaColision = CreateDefaultSubobject<UBoxComponent>(TEXT("ZonaColision"));
 	RootComponent = ZonaColision;
-	ZonaColision->SetBoxExtent(FVector(200.f, 200.f, 700.f));
+	ZonaColision->SetBoxExtent(FVector(-290.f -470.f, 194, 645386.f));
 	ZonaColision->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	ZonaColision->SetCollisionResponseToAllChannels(ECR_Ignore);
 	ZonaColision->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
@@ -30,7 +30,7 @@ AZonaProxy::AZonaProxy()
 	ParticulaVisual->SetupAttachment(RootComponent);
 	ParticulaVisual->bAutoActivate = false;
 
-	static ConstructorHelpers::FObjectFinder<UParticleSystem> ParticleAsset(TEXT("ParticleSystem'/Game/StarterContent/Particles/P_Fire.P_Fire'")); 
+	static ConstructorHelpers::FObjectFinder<UParticleSystem> ParticleAsset(TEXT("ParticleSystem'/Game/StarterContent/Particles/P_Steam_Lit.P_Steam_Lit'")); 
 	if (ParticleAsset.Succeeded())
 	{
 		ParticulaVisual->SetTemplate(ParticleAsset.Object);
@@ -101,7 +101,7 @@ void AZonaProxy::DesactivarZona()
 	// Timer para volver a activar
 	GetWorldTimerManager().SetTimer(TimerActivacion, this, &AZonaProxy::ActivarZona, 3.0f, false);
 
-	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, TEXT("Zona segura DESACTIVADA"));
+	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Green, TEXT("Zona segura DESACTIVADA"));
 }
 
 
