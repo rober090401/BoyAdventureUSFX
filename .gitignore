@@ -1,0 +1,30 @@
+# Archivos Unreal Engine
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+Build/
+*.sln
+*.vcxproj
+*.VC.db
+*.opendb
+*.ide
+*.autosave
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+
+# Archivos de sistema
+Thumbs.db
+.DS_Store
+
+# Archivos temporales
+*.log
+*.backup
+*.tmp
+
+# Plugins del Marketplace (no subir)
+Plugins/Marketplace/
